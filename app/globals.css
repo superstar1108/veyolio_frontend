@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper text-ink antialiased; }
+  ::selection { @apply bg-ink text-paper; }
+}
+
+@layer components {
+  .container-site { @apply mx-auto w-full max-w-site px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[0.18em] text-ink-muted; }
+  .btn { @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors; }
+  .btn-primary { @apply btn bg-ink text-paper hover:bg-ink-soft; }
+  .btn-ghost { @apply btn border border-ink/20 hover:border-ink; }
+  .card { @apply rounded-2xl border border-ink/10 bg-white p-6 sm:p-8; }
+  .h1 { @apply text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl; }
+  .h2 { @apply text-3xl font-semibold tracking-tight sm:text-4xl; }
+  .prose-site p { @apply mb-5 leading-relaxed text-ink-soft; }
+  .input { @apply w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none focus:border-ink; }
+}
+
+/* ---------- Animations ---------- */
+@keyframes slow-zoom {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@layer utilities {
+  .animate-slow-zoom { animation: slow-zoom 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-zoom, .animate-float { animation: none; }
+}
